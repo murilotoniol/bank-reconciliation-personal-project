@@ -1,7 +1,7 @@
 spring:
   application:
     name: bank-reconciliation-api
-  datasourse:
+  datasource:
     url: jdbc:postgresql://localhost:5432/bank_reconciliation
     username: postgres
     password: password
