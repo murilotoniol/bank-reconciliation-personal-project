@@ -1,0 +1,13 @@
+package br.com.murilo.bank_reconciliation_api;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class BankReconciliationApiApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(BankReconciliationApiApplication.class, args);
+	}
+
+}
