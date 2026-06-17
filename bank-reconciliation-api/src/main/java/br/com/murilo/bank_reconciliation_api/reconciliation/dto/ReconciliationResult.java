@@ -1,6 +1,6 @@
 package br.com.murilo.bank_reconciliation_api.reconciliation.dto;
 
-public enum ResultadoConciliacao {
+public enum ReconciliationResult {
     SUCESSO,
     PARCIAL,
     FALHA,

@@ -1,6 +1,6 @@
 package br.com.murilo.bank_reconciliation_api.account.entity;
 
-import br.com.murilo.bank_reconciliation_api.company.entity.Empresa;
+import br.com.murilo.bank_reconciliation_api.company.entity.Company;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,31 +14,31 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "tbConta", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"empresa_id", "nome_banco", "agencia", "conta"})
+@Table(name = "tbAccount", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"company_id", "bank_name", "agency", "account"})
 })
-public class Conta {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.UUID)
     @Column(name = "id", nullable = false, unique = true)
     private UUID id;
 
-    @Column(name = "nome_banco", nullable = false)
-    private String nomeBanco;
+    @Column(name = "bank_name", nullable = false)
+    private String bankName;
 
-    @Column(name = "agencia", nullable = false)
-    private Integer agencia;
+    @Column(name = "agency", nullable = false)
+    private Integer agency;
 
-    @Column(name = "conta", nullable = false)
-    private Integer conta;
+    @Column(name = "account", nullable = false)
+    private Integer account;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "empresa_id", nullable = false)
-    private Empresa empresa;
+    @JoinColumn(name = "company_id", nullable = false)
+    private Company company;
 
-    @Column(name = "saldo_atual")
-    private BigDecimal saldoAtual;
+    @Column(name = "current_balance")
+    private BigDecimal currentBalance;
 
     @Column(name = "status", nullable = false)
     private String status;

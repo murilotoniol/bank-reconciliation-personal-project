@@ -1,6 +1,6 @@
 package br.com.murilo.bank_reconciliation_api.reconciliation.entity;
 
-import br.com.murilo.bank_reconciliation_api.reconciliation.dto.ResultadoConciliacao;
+import br.com.murilo.bank_reconciliation_api.reconciliation.dto.ReconciliationResult;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,24 +10,24 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tbConciliacao")
+@Table(name = "tbReconciliation")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Conciliacao {
+public class Reconciliation {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.UUID)
     @Column(name = "id", nullable = false, unique = true)
     private UUID id;
 
-    @Column(name = "data_processamento", nullable = false)
-    private LocalDateTime dataProcessamento;
+    @Column(name = "processing_date", nullable = false)
+    private LocalDateTime processingDate;
 
-    @Column(name = "arquivo_importado", nullable = false)
-    private String arquivoImportado;
+    @Column(name = "imported_file", nullable = false)
+    private String importedFile;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "resultado", nullable = false)
-    private ResultadoConciliacao resultado;
+    @Column(name = "result", nullable = false)
+    private ReconciliationResult result;
 }
