@@ -1,16 +1,22 @@
 package br.com.murilo.bank_reconciliation_api.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
+@Table(name = "tbConta")
 public class Conta {
 
     @Id
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.UUID)
     @Column
     private UUID id;
 
