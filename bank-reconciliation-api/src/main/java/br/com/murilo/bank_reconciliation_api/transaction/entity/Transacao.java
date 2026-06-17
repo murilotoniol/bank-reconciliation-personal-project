@@ -1,7 +1,8 @@
-package br.com.murilo.bank_reconciliation_api.entities;
+package br.com.murilo.bank_reconciliation_api.transaction.entity;
 
-import br.com.murilo.bank_reconciliation_api.enums.TransacaoStatus;
-import br.com.murilo.bank_reconciliation_api.enums.TransacaoTipo;
+import br.com.murilo.bank_reconciliation_api.account.entity.Conta;
+import br.com.murilo.bank_reconciliation_api.transaction.dto.TransacaoStatus;
+import br.com.murilo.bank_reconciliation_api.transaction.dto.TransacaoTipo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,29 +24,29 @@ public class Transacao {
     @Column(name = "id", nullable = false, unique = true)
     private UUID id;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo")
+    private TransacaoTipo tipo;
+
+    @Column(name = "valor", nullable = false)
+    private BigDecimal valor;
+
     @Column(name = "data", nullable = false)
     private LocalDateTime data;
 
     @Column(name = "descricao")
     private String descricao;
 
-    @Column(name = "valor", nullable = false)
-    private BigDecimal valor;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private TransacaoStatus status;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pagador_id", nullable = false)
     private Conta pagador;
 
     @ManyToOne
     @JoinColumn(name = "beneficiario_id", nullable = false)
     private Conta beneficiario;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "tipo")
-    private TransacaoTipo tipo;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private TransacaoStatus status;
 
 }
